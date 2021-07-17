@@ -10,8 +10,8 @@ import PublicIcon from '@material-ui/icons/LockOpenOutlined';
 // components
 import Home from '../pages/Home';
 import Dashboard from '../pages/Dashboard';
-import GHPrivate from '../pages/GitHub/PrivateRepo';
-import GHPublic from '../pages/GitHub/PublicRepo';
+// import GHPrivate from '../pages/GitHub/PrivateRepo';
+// import GHPublic from '../pages/GitHub/PublicRepo';
 import Files from '../pages/Files';
 import Settings from '../pages/Settings';
 
