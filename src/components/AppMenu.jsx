@@ -20,7 +20,7 @@ import { useLocation } from 'react-router-dom';
 // components
 import MenuItem from './MenuItem';
 // app routes
-import { routes } from '../config';
+import { privateRoutes } from '../config';
 
 // define css-in-js
 const useStyles = makeStyles((theme) =>
@@ -52,7 +52,7 @@ const Menu = () => {
 
   return (
     <List>
-      {routes.map((route) => (
+      {privateRoutes.map((route) => (
         <>
           {route.subRoutes ? (
             <>

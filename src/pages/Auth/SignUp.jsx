@@ -77,7 +77,6 @@ const Login = () => {
         <CardContent>
           <div>
             <TextField
-              // error={state.isError}
               fullWidth
               id="username"
               type="email"
@@ -86,8 +85,6 @@ const Login = () => {
               margin="normal"
               error={!!errors.username}
               helperText={errors?.username?.message}
-              // onChange={handleUsernameChange}
-              // onKeyPress={handleKeyPress}
               {...register('username', {
                 required: {
                   value: true,
@@ -95,7 +92,6 @@ const Login = () => {
                 },
               })}
             />
-
             <TextField
               fullWidth
               id="password"
@@ -111,9 +107,6 @@ const Login = () => {
               })}
               error={!!errors.password}
               helperText={errors?.password?.message}
-              // helperText={{ errors.password } && "Incorrect entry."}
-              // helperText={state.helperText}
-              // onChange={handlePasswordChange}
               // onKeyPress={handleKeyPress}
             />
           </div>
@@ -125,7 +118,7 @@ const Login = () => {
             color="primary"
             className={classes.loginBtn}
             onClick={handleSubmit(onSubmit)}
-            // disabled={state.isButtonDisabled}
+            type="submit"
           >
             Login
           </Button>

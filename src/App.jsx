@@ -1,17 +1,9 @@
-import React from 'react';
 import {
   createTheme,
   responsiveFontSizes,
   ThemeProvider,
 } from '@material-ui/core/styles';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
-
-// components
-import Layout from './modules/Layout';
-
-// app routes
-import { routes } from './config';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 // constants
 import { APP_TITLE } from './utils/constants';
@@ -22,10 +14,7 @@ import { store } from './store/store';
 
 import { lightTheme } from './theme/appTheme';
 
-import Auth from './pages/Auth';
-
-// default component
-const DefaultComponent = () => <div>{`No Component Defined.`}</div>;
+import Routes from './modules/Router';
 
 function App() {
   // define custom theme
@@ -33,42 +22,16 @@ function App() {
   theme = responsiveFontSizes(theme);
 
   return (
-    <>
+    <HelmetProvider>
       <Helmet>
         <title>{APP_TITLE}</title>
       </Helmet>
       <Provider store={store}>
         <ThemeProvider theme={theme}>
-          <Router>
-            <Switch>
-              <Route path="/auth" key="Auth" exact component={Auth} />
-              <Layout>
-                {/* for each route config, a react route is created */}
-                {routes.map((route) =>
-                  route.subRoutes ? (
-                    route.subRoutes.map((item) => (
-                      <Route
-                        key={`${item.key}`}
-                        path={`${item.path}`}
-                        component={item.component || DefaultComponent}
-                        exact
-                      />
-                    ))
-                  ) : (
-                    <Route
-                      key={`${route.key}`}
-                      path={`${route.path}`}
-                      component={route.component || DefaultComponent}
-                      exact
-                    />
-                  )
-                )}
-              </Layout>
-            </Switch>
-          </Router>
+          <Routes />
         </ThemeProvider>
       </Provider>
-    </>
+    </HelmetProvider>
   );
 }
 

@@ -1,5 +1,5 @@
 import React, { FC, ReactElement } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 // components
