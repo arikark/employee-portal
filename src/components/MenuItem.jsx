@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import {
   ListItem,
@@ -9,14 +9,11 @@ import {
   IconButton,
 } from '@material-ui/core';
 import DefaultIcon from '@material-ui/icons/FileCopy';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { NavLink, useLocation } from 'react-router-dom';
 
-// models
-import RouteItem from '../model/RouteItem.model';
-
 // define css-in-js
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     selected: {
       transition: 'box-shadow',
@@ -33,13 +30,11 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 // functional component
-const MenuItem: FC<RouteItem> = (route: RouteItem): ReactElement => {
+const MenuItem = (route) => {
   const classes = useStyles();
-  const location: any = useLocation();
+  const location = useLocation();
 
-  const handleNavigate = (
-    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-  ): void => {
+  const handleNavigate = (e) => {
     if (!route.enabled) e.preventDefault();
   };
 

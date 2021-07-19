@@ -1,6 +1,6 @@
-import React, { FC, ReactNode, useReducer } from 'react';
+import React, { useReducer } from 'react';
 import clsx from 'clsx';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
 
 // components
@@ -12,7 +12,7 @@ import Footer from '../components/Footer';
 import { DRAWER_WIDTH, FOOTER_HEIGHT } from '../utils/constants';
 
 // define css-in-js
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       flex: 1,
@@ -44,13 +44,8 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-// define interface to represent component props
-interface Props {
-  children: ReactNode;
-}
-
 // functional component
-const Layout: FC<Props> = ({ children }) => {
+const Layout = ({ children }) => {
   const classes = useStyles();
   const [open, toggle] = useReducer((open) => !open, true);
   return (

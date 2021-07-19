@@ -1,7 +1,6 @@
-import React, { ReactElement, FC } from 'react';
+import React from 'react';
 import {
   createTheme,
-  Theme,
   responsiveFontSizes,
   ThemeProvider,
 } from '@material-ui/core/styles';
@@ -17,23 +16,20 @@ import { routes } from './config';
 // constants
 import { APP_TITLE } from './utils/constants';
 
-// interfaces
-import RouteItem from './model/RouteItem.model';
-
 // define redux store
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 
 import { lightTheme } from './theme/appTheme';
 
+import Auth from './pages/Auth';
+
 // default component
-const DefaultComponent: FC<{}> = (): ReactElement => (
-  <div>{`No Component Defined.`}</div>
-);
+const DefaultComponent = () => <div>{`No Component Defined.`}</div>;
 
 function App() {
   // define custom theme
-  let theme: Theme = createTheme(lightTheme);
+  let theme = createTheme(lightTheme);
   theme = responsiveFontSizes(theme);
 
   return (
@@ -45,11 +41,12 @@ function App() {
         <ThemeProvider theme={theme}>
           <Router>
             <Switch>
+              <Route path="/auth" key="Auth" exact component={Auth} />
               <Layout>
                 {/* for each route config, a react route is created */}
-                {routes.map((route: RouteItem) =>
+                {routes.map((route) =>
                   route.subRoutes ? (
-                    route.subRoutes.map((item: RouteItem) => (
+                    route.subRoutes.map((item) => (
                       <Route
                         key={`${item.key}`}
                         path={`${item.path}`}

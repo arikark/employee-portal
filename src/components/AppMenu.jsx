@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, useState } from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import {
   List,
@@ -11,7 +11,7 @@ import {
   Tooltip,
   IconButton,
 } from '@material-ui/core';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import DefaultIcon from '@material-ui/icons/FileCopy';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
@@ -21,11 +21,9 @@ import { useLocation } from 'react-router-dom';
 import MenuItem from './MenuItem';
 // app routes
 import { routes } from '../config';
-// interfaces
-import RouteItem from '../model/RouteItem.model';
 
 // define css-in-js
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     divider: {
       marginTop: theme.spacing(1),
@@ -43,18 +41,18 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 // functional component
-const Menu: FC<{}> = (): ReactElement => {
+const Menu = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const location: any = useLocation();
+  const location = useLocation();
 
-  const handleClick = (): void => {
+  const handleClick = () => {
     setOpen(!open);
   };
 
   return (
     <List>
-      {routes.map((route: RouteItem) => (
+      {routes.map((route) => (
         <>
           {route.subRoutes ? (
             <>
@@ -65,7 +63,7 @@ const Menu: FC<{}> = (): ReactElement => {
                       [classes.selected]:
                         !open &&
                         route.subRoutes.some(
-                          (item: RouteItem) => item.path === location.pathname
+                          (item) => item.path === location.pathname
                         ),
                     })}
                     size="small"
@@ -86,7 +84,7 @@ const Menu: FC<{}> = (): ReactElement => {
               </ListItem>
               <Collapse in={open} timeout="auto" unmountOnExit>
                 <List className={classes.nested}>
-                  {route.subRoutes.map((sRoute: RouteItem) => (
+                  {route.subRoutes.map((sRoute) => (
                     <MenuItem
                       key={`${sRoute.key}`}
                       title={sRoute.title}

@@ -1,6 +1,6 @@
-import { FC, ReactElement } from 'react';
+import React from 'react';
 import clsx from 'clsx';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import IconButton from '@material-ui/core/IconButton';
@@ -11,7 +11,7 @@ import Divider from '@material-ui/core/Divider';
 import AppMenu from '../components/AppMenu';
 import { DRAWER_WIDTH } from '../utils/constants';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       display: 'flex',
@@ -60,13 +60,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-// define interface to represent component props
-interface Props {
-  open: boolean;
-  toggle: () => void;
-}
-
-const DrawerLeft: FC<Props> = ({ open, toggle }): ReactElement => {
+const DrawerLeft = ({ open, toggle }) => {
   const classes = useStyles();
 
   return (

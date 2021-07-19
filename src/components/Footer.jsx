@@ -1,12 +1,12 @@
-import React, { FC, ReactElement } from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import React from 'react';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { Link } from '@material-ui/core';
 
 // constants
 import { FOOTER_TEXT, FOOTER_HEIGHT } from '../utils/constants';
 
 // define css-in-js
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       flex: 1,
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 // functional component
-const Footer: FC<{}> = (): ReactElement => {
+const Footer = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>

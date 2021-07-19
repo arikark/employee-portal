@@ -1,6 +1,6 @@
-import React, { ReactElement, FC } from 'react';
+import React from 'react';
 import clsx from 'clsx';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import {
   AppBar,
   Toolbar,
@@ -15,7 +15,7 @@ import UserIcon from '@material-ui/icons/AccountCircle';
 import { APP_TITLE, DRAWER_WIDTH } from '../utils/constants';
 
 // define css-in-js
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
@@ -53,13 +53,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-// define interface to represent component props
-interface Props {
-  open: boolean;
-  toggle: () => void;
-}
-
-const Header: FC<Props> = ({ open, toggle }): ReactElement => {
+const Header = ({ open, toggle }) => {
   const classes = useStyles();
   return (
     <>
