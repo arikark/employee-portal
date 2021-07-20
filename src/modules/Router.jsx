@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Layout from '../modules/Layout';
 
 // app routes
-import { privateRoutes } from '../config/index';
-import SignIn from '../pages/Auth/SignIn';
+import { privateRoutes, publicRoutes } from '../config/index';
 import PrivateRoute from '../modules/PrivateRoute';
+import PublicRoute from '../modules/PublicRoute';
 
 const Routes = ({ children }) => {
   // default component
@@ -13,7 +13,11 @@ const Routes = ({ children }) => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/auth/signin" component={SignIn} />
+        {publicRoutes.map((route) => (
+          <PublicRoute key={`${route.key}`} path={`${route.path}`} exact>
+            {route.component || DefaultComponent}
+          </PublicRoute>
+        ))}
         {privateRoutes.map((route) =>
           route.subRoutes ? (
             route.subRoutes.map((item) => (

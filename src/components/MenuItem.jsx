@@ -33,7 +33,6 @@ const useStyles = makeStyles((theme) =>
 const MenuItem = (route) => {
   const classes = useStyles();
   const location = useLocation();
-
   const handleNavigate = (e) => {
     if (!route.enabled) e.preventDefault();
   };
@@ -43,7 +42,6 @@ const MenuItem = (route) => {
       <NavLink
         to={`${route.path}`}
         style={{ textDecoration: 'none', color: 'inherit' }}
-        key={`${route.key}`}
         onClick={handleNavigate}
         className={clsx({
           [classes.listItemDisabled]: !route.enabled,

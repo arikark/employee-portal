@@ -3,19 +3,19 @@ import { Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectCurrentUser } from '../store/auth/slice';
 
-function PrivateRoute({ children, ...rest }) {
+function PublicRoute({ children, ...rest }) {
   const currentUser = useSelector(selectCurrentUser);
-  console.log('private route');
+  console.log('public route');
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        currentUser.signedIn ? (
+        !currentUser.signedIn ? (
           children
         ) : (
           <Redirect
             to={{
-              pathname: '/auth/signin',
+              pathname: '/',
               state: { from: location },
             }}
           />
@@ -25,4 +25,4 @@ function PrivateRoute({ children, ...rest }) {
   );
 }
 
-export default PrivateRoute;
+export default PublicRoute;
