@@ -45,9 +45,10 @@ const useStyles = makeStyles((theme) =>
 );
 
 // functional component
-const Layout = ({ children }) => {
+const AppLayout = ({ children }) => {
   const classes = useStyles();
   const [open, toggle] = useReducer((open) => !open, false);
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -68,4 +69,4 @@ const Layout = ({ children }) => {
   );
 };
 
-export default memo(Layout);
+export default memo(AppLayout);

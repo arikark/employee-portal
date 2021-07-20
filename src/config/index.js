@@ -19,7 +19,7 @@ export const privateRoutes = [
     tooltip: 'Home',
     path: '/home',
     enabled: true,
-    component: <Home />,
+    component: Home,
     icon: HomeIcon,
   },
   {
@@ -28,7 +28,7 @@ export const privateRoutes = [
     tooltip: 'Dashboard',
     path: '/dashboard',
     enabled: true,
-    component: <Dashboard />,
+    component: Dashboard,
     icon: DashboardIcon,
   },
   // {
@@ -64,7 +64,7 @@ export const privateRoutes = [
     tooltip: 'Files',
     path: '/files',
     enabled: true,
-    component: <Files />,
+    component: Files,
     icon: FolderIcon,
     appendDivider: true,
   },
@@ -74,7 +74,7 @@ export const privateRoutes = [
     tooltip: 'Settings',
     path: '/settings',
     enabled: true,
-    component: <Settings />,
+    component: Settings,
     icon: SettingsIcon,
   },
 ];
@@ -88,6 +88,12 @@ export const publicRoutes = [
     path: '/auth/signin',
     component: <SignIn />,
   },
+  // {
+  //   key: 'router-error',
+  //   title: 'Error',
+  //   path: '*',
+  //   component: <div>{`404 No Component Defined.`}</div>,
+  // },
   // {
   //   key: 'router-gh-public',
   //   title: 'Public Repos',
