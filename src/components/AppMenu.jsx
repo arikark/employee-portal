@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import clsx from 'clsx';
 import {
   List,
@@ -53,7 +53,7 @@ const Menu = () => {
   return (
     <List>
       {privateRoutes.map((route) => (
-        <>
+        <React.Fragment key={`${route.key}`}>
           {route.subRoutes ? (
             <>
               <ListItem button onClick={handleClick}>
@@ -86,7 +86,8 @@ const Menu = () => {
                 <List className={classes.nested}>
                   {route.subRoutes.map((sRoute) => (
                     <MenuItem
-                      key={`${sRoute.key}`}
+                      // sRoute
+                      uniqueKey={`${sRoute.key}`}
                       title={sRoute.title}
                       icon={sRoute.icon}
                       tooltip={sRoute.tooltip}
@@ -100,22 +101,23 @@ const Menu = () => {
               </Collapse>
             </>
           ) : (
-            <MenuItem
-              key={`${route.key}`}
-              title={route.title}
-              icon={route.icon}
-              tooltip={route.tooltip}
-              path={route.path}
-              enabled={route.enabled}
-              component={route.component}
-              subRoutes={route.subRoutes}
-            />
+            <>
+              <MenuItem
+                title={route.title}
+                icon={route.icon}
+                tooltip={route.tooltip}
+                path={route.path}
+                enabled={route.enabled}
+                component={route.component}
+                subRoutes={route.subRoutes}
+              />
+            </>
           )}
           {route.appendDivider && <Divider className={classes.divider} />}
-        </>
+        </React.Fragment>
       ))}
     </List>
   );
 };
 
-export default Menu;
+export default memo(Menu);
