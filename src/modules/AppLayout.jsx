@@ -1,4 +1,4 @@
-import { useReducer, memo } from 'react';
+import React, { useReducer } from 'react';
 import clsx from 'clsx';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
@@ -47,8 +47,7 @@ const useStyles = makeStyles((theme) =>
 // functional component
 const AppLayout = ({ children }) => {
   const classes = useStyles();
-  const [open, toggle] = useReducer((open) => !open, false);
-
+  const [open, toggle] = useReducer((open) => !open, true);
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -69,4 +68,4 @@ const AppLayout = ({ children }) => {
   );
 };
 
-export default memo(AppLayout);
+export default Layout;

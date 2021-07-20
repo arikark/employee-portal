@@ -1,16 +1,14 @@
 import { Route, Redirect } from 'react-router-dom';
 
-import { useSelector } from 'react-redux';
-import { selectCurrentUser } from '../store/auth/slice';
+const isAuthenticated = true;
 
 function PrivateRoute({ children, ...rest }) {
-  const currentUser = useSelector(selectCurrentUser);
   console.log('private route');
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        currentUser.signedIn ? (
+        isAuthenticated ? (
           children
         ) : (
           <Redirect

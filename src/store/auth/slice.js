@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { Auth } from 'aws-amplify';
 
 const initialState = {
-  data: { signedIn: false },
+  data: {},
   status: 'idle',
   error: null,
 };
@@ -10,8 +10,8 @@ const initialState = {
 export const signIn = createAsyncThunk(
   'auth/signIn',
   async ({ username, password }) => {
-    console.log(username, password);
-    const response = await Auth.signIn(username, password);
+    // const response = await Auth.signIn(username, password);
+    const response = username;
     console.log(response);
     return {
       ...response.attributes,

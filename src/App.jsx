@@ -16,10 +16,6 @@ import { lightTheme } from './theme/appTheme';
 
 import Routes from './modules/Router';
 
-import amplifyConfigure from './amplify/amplifyConfigure';
-
-amplifyConfigure();
-
 function App() {
   // define custom theme
   let theme = createTheme(lightTheme);

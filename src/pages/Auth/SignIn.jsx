@@ -1,7 +1,14 @@
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import useInputState from '../../utils/hooks/useInputState';
 import { useForm } from 'react-hook-form';
 
-import { signIn } from '../../store/auth/slice';
+import {
+  confirmSignUp,
+  signIn,
+  selectApiStatus,
+  selectErrorMessage,
+} from '../../store/auth/slice';
 
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 
@@ -37,22 +44,24 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const SignIn = () => {
+const Login = () => {
   const classes = useStyles();
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm({
     mode: 'onSubmit',
   });
 
   // const [username, handleUsernameChange, resetUsername] = useInputState('');
-  // const [password, handlePasswordChange, resetPassword] = useInputState('');;
+  // const [password, handlePasswordChange, resetPassword] = useInputState('');
+  const authApiStatus = useSelector(selectApiStatus);
+  const authError = useSelector(selectErrorMessage);
   const authDispatch = useDispatch();
 
-  const onSubmit = async (data) => {
-    // console.log(data);
+  const onSubmit = async (data, erros) => {
     authDispatch(signIn(data));
   };
   // const handleKeyPress = (event) => {
@@ -119,4 +128,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default Login;

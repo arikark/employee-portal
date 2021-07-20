@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -61,7 +61,6 @@ const useStyles = makeStyles((theme) =>
 );
 
 const DrawerLeft = ({ open, toggle }) => {
-  console.log('drawerLeft');
   const classes = useStyles();
 
   return (
@@ -94,4 +93,4 @@ const DrawerLeft = ({ open, toggle }) => {
     </div>
   );
 };
-export default memo(DrawerLeft);
+export default DrawerLeft;
