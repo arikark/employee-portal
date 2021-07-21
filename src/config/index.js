@@ -89,6 +89,15 @@ export const publicRoutes = [
     component: <SignIn />,
   },
   // {
+  //   key: 'router-notfound',
+  //   title: 'Not Found',
+  //   tooltip: 'Not Found',
+  //   path: '*',
+  //   enabled: true,
+  //   component: <p>not found</p>,
+  //   icon: SettingsIcon,
+  // },
+  // {
   //   key: 'router-error',
   //   title: 'Error',
   //   path: '*',

@@ -1,6 +1,6 @@
-import React, { FC, ReactElement } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 // components
 import PageTitle from '../components/PageTitle';
@@ -9,7 +9,7 @@ import PageTitle from '../components/PageTitle';
 import { APP_TITLE, PAGE_TITLE_DASHBOARD } from '../utils/constants';
 
 // define css-in-js
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       flex: 1,
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const Dashboard: FC<{}> = (): ReactElement => {
+const Dashboard = () => {
   const classes = useStyles();
   return (
     <>

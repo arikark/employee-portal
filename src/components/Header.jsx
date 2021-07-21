@@ -10,6 +10,8 @@ import {
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import UserIcon from '@material-ui/icons/AccountCircle';
+import { signOut } from '../store/auth/slice';
+import { useDispatch } from 'react-redux';
 
 // constants
 import { APP_TITLE, DRAWER_WIDTH } from '../utils/constants';
@@ -55,6 +57,7 @@ const useStyles = makeStyles((theme) =>
 
 const Header = ({ open, toggle }) => {
   const classes = useStyles();
+  const authDispatch = useDispatch();
   return (
     <>
       <CssBaseline />
@@ -83,7 +86,11 @@ const Header = ({ open, toggle }) => {
               {APP_TITLE}
             </Typography>
           </div>
-          <IconButton size="small" color="inherit">
+          <IconButton
+            size="small"
+            color="inherit"
+            onClick={() => authDispatch(signOut())}
+          >
             <UserIcon />
           </IconButton>
         </Toolbar>

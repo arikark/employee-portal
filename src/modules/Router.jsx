@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 // components
 
 // app routes
@@ -33,17 +33,22 @@ const renderPublicRoutes = () => {
   ));
 };
 
-const DefaultComponent = () => <div>{`No Component Defined.`}</div>;
+// const DefaultComponent = () => <div>{`No Component Defined.`}</div>;
 
 const Routes = ({ children }) => {
   // default component
-  console.log('map');
   return (
     <Router>
       <Switch>
-        {renderPublicRoutes()}
-        <AppLayout>{renderPrivateRoutes()}</AppLayout>
-        <Route component={DefaultComponent} />
+        <PrivateRoute path="/app">
+          <AppLayout>{renderPrivateRoutes()}</AppLayout>
+          <Redirect to="/app/home" />
+        </PrivateRoute>
+        {/* The main issue is that AppLayout (header and drawer) is rendered for the below 404 component when a URL is not matched */}
+        <PublicRoute path="/">
+          {renderPublicRoutes()}
+          <Redirect to="/auth/signin" />
+        </PublicRoute>
       </Switch>
     </Router>
   );
