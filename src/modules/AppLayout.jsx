@@ -4,7 +4,7 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
 
 // components
-import Header from '../components/Header';
+import Header from './Header';
 import DrawerLeft from './DrawerLeft';
 import Footer from '../components/Footer';
 

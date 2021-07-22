@@ -5,11 +5,13 @@ import SettingsIcon from '@material-ui/icons/SettingsOutlined';
 import FolderIcon from '@material-ui/icons/Folder';
 
 // components
-import SignIn from '../pages/Auth/SignIn';
 import Home from '../pages/Home';
 import Dashboard from '../pages/Dashboard';
 import Files from '../pages/Files';
 import Settings from '../pages/Settings';
+import SignIn from '../pages/Auth/SignIn';
+import SignUp from '../pages/Auth/SignUp';
+import ResetPassword from '../pages/Auth/ResetPassword';
 
 // define app routes
 export const privateRoutes = [
@@ -84,9 +86,20 @@ export const publicRoutes = [
   {
     key: 'router-auth-signin',
     title: 'Sign In',
-    tooltip: 'Sign In',
     path: '/auth/signin',
     component: <SignIn />,
+  },
+  {
+    key: 'router-auth-signup',
+    title: 'Sign Up',
+    path: '/auth/signup',
+    component: <SignUp />,
+  },
+  {
+    key: 'router-auth-resetpassword',
+    title: 'Reset Password',
+    path: '/auth/resetpassword',
+    component: <ResetPassword />,
   },
   // {
   //   key: 'router-notfound',
