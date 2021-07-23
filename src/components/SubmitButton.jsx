@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const SubmitButton = ({ submitBtnText, onSubmit, isLoading }) => {
+const SubmitButton = ({ submitBtnText = 'submit', onSubmit, isLoading }) => {
   const classes = useStyles();
   return (
     <Button

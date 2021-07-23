@@ -1,4 +1,5 @@
 import { createStyles, makeStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
@@ -19,13 +20,29 @@ const useStyles = makeStyles((theme) =>
     },
     card: {
       marginTop: theme.spacing(20),
-      minWidth: theme.spacing(50),
-      minHeight: theme.spacing(40),
       padding: theme.spacing(1),
+      minWidth: theme.spacing(50),
+    },
+    smCard: {
+      minHeight: theme.spacing(40),
+    },
+    mdCard: {
+      minHeight: theme.spacing(50),
+    },
+    lgCard: {
+      minHeight: theme.spacing(60),
     },
     content: {
-      maxHeight: theme.spacing(18),
       marginBottom: theme.spacing(0),
+    },
+    smContent: {
+      maxHeight: theme.spacing(18),
+    },
+    mdContent: {
+      maxHeight: theme.spacing(30),
+    },
+    lgContent: {
+      maxHeight: theme.spacing(46),
     },
     actions: {
       marginTop: theme.spacing(0),
@@ -41,14 +58,25 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const FormCard = ({ children, isLoading, submitBtn, title, footer }) => {
+const FormCard = ({ children, size, submitBtn, title, footer }) => {
   const classes = useStyles();
-
   return (
     <form className={classes.container} noValidate autoComplete="off">
-      <Card className={classes.card}>
+      <Card
+        className={clsx(classes.card, {
+          [classes.smCard]: size === 'sm',
+          [classes.mdCard]: size === 'md',
+          [classes.lgCard]: size === 'lg',
+        })}
+      >
         <CardHeader className={classes.header} title={title} />
-        <CardContent className={classes.content}>
+        <CardContent
+          className={clsx(classes.content, {
+            [classes.smContent]: size === 'sm',
+            [classes.mdContent]: size === 'md',
+            [classes.lgContent]: size === 'lg',
+          })}
+        >
           <div>{children}</div>
         </CardContent>
         <CardActions className={classes.actions}>{submitBtn}</CardActions>

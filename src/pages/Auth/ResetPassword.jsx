@@ -3,10 +3,10 @@ import { useForm } from 'react-hook-form';
 
 import { signUp, selectApiStatus } from '../../store/auth/slice';
 
-import TextField from '@material-ui/core/TextField';
 import LinkRouter from '../../components/LinkRouter';
 import FormCard from '../../components/FormCard';
 import SubmitButton from '../../components/SubmitButton';
+import ValidTextField from '../../components/ValidTextField';
 
 const ResetPassword = () => {
   const {
@@ -19,24 +19,22 @@ const ResetPassword = () => {
   });
   const authDispatch = useDispatch();
   const authApiStatus = useSelector(selectApiStatus);
-
   const isLoading = authApiStatus.includes('Loading');
-  const submitBtnText = 'reset password';
-
   const onSubmit = async (data) => {
     authDispatch(signUp(data));
   };
+
   const renderFooter = () => {
-    return <LinkRouter text="Sign In" variant="body2" to="/auth/signin" />;
+    return (
+      <>
+        <LinkRouter text="Sign In" variant="body2" to="/auth/signin" />
+      </>
+    );
   };
 
   const renderSubmitButton = () => {
     return (
-      <SubmitButton
-        submitBtnText={submitBtnText}
-        onSubmit={handleSubmit(onSubmit)}
-        isLoading={isLoading}
-      />
+      <SubmitButton onSubmit={handleSubmit(onSubmit)} isLoading={isLoading} />
     );
   };
 
@@ -46,43 +44,30 @@ const ResetPassword = () => {
       isLoading={isLoading}
       submitBtn={renderSubmitButton()}
       footer={renderFooter()}
+      size="sm"
     >
-      <TextField
+      <ValidTextField
+        variant="username"
+        label="Username or Email"
+        placeholder="Enter username or email"
+        clearErrors={clearErrors}
+        error={errors.username}
+        register={register}
+        isLoading={isLoading}
         autoFocus
-        disabled={authApiStatus.includes('Loading')}
         fullWidth
-        id="username"
-        type="email"
-        label="Username"
-        placeholder="Username"
         margin="normal"
-        error={!!errors.username}
-        helperText={errors?.username?.message}
-        onClick={() => clearErrors('username')}
-        {...register('username', {
-          required: {
-            value: true,
-            message: 'You must enter a valid username',
-          },
-        })}
       />
-      <TextField
-        disabled={authApiStatus.includes('Loading')}
+      <ValidTextField
+        variant="code"
+        label="Code"
+        placeholder="Enter code"
+        clearErrors={clearErrors}
+        error={errors.code}
+        register={register}
+        isLoading={isLoading}
         fullWidth
-        id="password"
-        type="password"
-        label="Password"
-        placeholder="Password"
         margin="normal"
-        onClick={() => clearErrors('password')}
-        {...register('password', {
-          required: {
-            value: true,
-            message: 'You must enter a valid password',
-          },
-        })}
-        error={!!errors.password}
-        helperText={errors?.password?.message}
       />
     </FormCard>
   );
