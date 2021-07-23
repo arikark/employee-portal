@@ -1,7 +1,12 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 
-import { signUp, selectApiStatus } from '../../store/auth/slice';
+import {
+  signIn,
+  selectApiStatus,
+  getCurrentSession,
+} from '../../store/auth/slice';
 
 import LinkRouter from '../../components/LinkRouter';
 import FormCard from '../../components/FormCard';
@@ -21,8 +26,13 @@ const SignIn = () => {
   const authApiStatus = useSelector(selectApiStatus);
   const isLoading = authApiStatus.includes('Loading');
   const onSubmit = async (data) => {
-    authDispatch(signUp(data));
+    authDispatch(signIn(data));
   };
+
+  useEffect(() => {
+    console.log('get current session');
+    authDispatch(getCurrentSession());
+  }, []);
 
   const renderFooter = () => {
     return (

@@ -2,10 +2,23 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { Auth } from 'aws-amplify';
 
 const initialState = {
-  data: { signedIn: false },
+  data: {},
   status: 'idle',
   error: null,
 };
+
+export const getCurrentSession = createAsyncThunk(
+  'auth/getCurrentSession',
+  async () => {
+    const response = await Auth.currentAuthenticatedUser();
+    console.log(response);
+    return {
+      ...response.attributes,
+      username: response.username,
+      signedIn: true,
+    };
+  }
+);
 
 export const signIn = createAsyncThunk(
   'auth/signIn',
@@ -90,6 +103,20 @@ const authSlice = createSlice({
     },
     [signIn.rejected]: (state, action) => {
       state.status = 'signInFailed';
+      state.error = action.error.message;
+      console.log(state.error);
+    },
+
+    [getCurrentSession.pending]: (state, action) => {
+      state.status = 'getCurrentSessionLoading';
+    },
+    [getCurrentSession.fulfilled]: (state, action) => {
+      state.status = 'getCurrentSessionSucceeded';
+      state.data = action.payload;
+      state.error = null;
+    },
+    [getCurrentSession.rejected]: (state, action) => {
+      state.status = 'getCurrentSessionFailed';
       state.error = action.error.message;
       console.log(state.error);
     },
